@@ -23,6 +23,7 @@ bmax=3.650;
 
 double lyap(double a, double b, double x, unsigned short s[], int s_length);
 int find_color(double num);
+void writePPMHeader(FILE *outPNG, int width, int height);
 
 int main(int argc, char* argv[])
 {
@@ -66,6 +67,7 @@ int main(int argc, char* argv[])
             double bMax = atof(argv[6]);
             double a_step = (aMax-aMin)/xres;
             double b_step = (aMax-aMin)/yres;
+            writePPMHeader(fp, nx, ny);
             for (i = 0; i < xres; i++)
             {
                 a = aMin + i * a_step;
@@ -82,7 +84,7 @@ int main(int argc, char* argv[])
                         rit = find_color(l);
                     }
                     sprintf(buf, "%d", rit);
-                    fprintf(fp, "%1s", buf);
+                    fprintf(fp, "%c%c%c", rit*32, rit*32, 0x0);
                 }
                 fflush(fp);
             }
@@ -147,4 +149,9 @@ double lyap(double a, double b,double x,unsigned short s[], int s_length)
         }
     }
     return(tot/iterations);
+}
+
+void writePPMHeader(FILE *outPNG, int width, int height)
+{
+    fprintf(outPNG, "P6%c%d %d%c%d%c", 0x0a, width, height, 0x0a, 0xFF, 0x0a);
 }
