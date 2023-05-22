@@ -46,7 +46,8 @@ int main(int argc, char* argv[])
     }
     else
     {
-        if(fopen_s(&fp, argv[1], "wb")==0)
+        fopen_s(&fp, argv[1], "wb");
+        if(fp == 0)
         {
             printf("Error: Can't open output file\n");
         }
@@ -66,27 +67,27 @@ int main(int argc, char* argv[])
             double bMin = atof(argv[5]);
             double bMax = atof(argv[6]);
             double a_step = (aMax-aMin)/xres;
-            double b_step = (aMax-aMin)/yres;
+            double b_step = (bMax-bMin)/yres;
             writePPMHeader(fp, xres, yres);
-            for (i = 0; i < xres; i++)
+            for (i = 0; i < yres; i++)
             {
-                a = aMin + i * a_step;
-                for (j = 0; j < yres; j++)
+                a = aMin + i * b_step;
+                for (j = 0; j < xres; j++)
                 {
-                    b = bMin + i * b_step;
+                    b = bMin + j * a_step;
                     l = lyap(a, b, x, suc, schema_length);
                     if (l > 0.0)
                     {
                         rit = 0;
+                        fprintf(fp, "%c%c%c", 0x0, 0x0, 0x0);
                     }
                     else
                     {
                         rit = find_color(l);
+                        fprintf(fp, "%c%c%c", 0x0, 0xff-rit*30, 0xff-rit*30);
                     }
-                    sprintf(buf, "%d", rit);
-                    fprintf(fp, "%c%c%c", rit*32, rit*32, 0x0);
                 }
-                fflush(fp);
+                printf("Line: %d\n", i);
             }
             fclose(fp);
         }
@@ -96,21 +97,17 @@ int main(int argc, char* argv[])
 int find_color(double num)
 {
     int ret = MAXCOLORS;
-    if (num >= 0.25)
+    if (num >= -0.25)
     {
         ret = MAXCOLORS - 3;
     }
-    if ((num < 0.25) && (num >= -0.25))
+    if ((num < -0.25) && (num >= -0.40))
     {
         ret = MAXCOLORS - 2;
     }
-    if ((num < -0.25) && (num >= -0.40))
+    if (num < -0.40)
     {
-        ret = MAXCOLORS - 1;
-    }
-    if (num <- 0.40)
-    {
-       ret = MAXCOLORS;
+       ret = MAXCOLORS - 1;
     }
     return(ret);
 }
@@ -145,7 +142,6 @@ double lyap(double a, double b,double x,unsigned short s[], int s_length)
                 y = -y;
             }
             tot=tot+(log(y))/c;
-            iterations++;
         }
     }
     return(tot/iterations);
