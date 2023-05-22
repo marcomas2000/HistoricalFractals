@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
     int i,j,k,c0=0;
     int c1=0;
     int rit;
-    int schema_Length;
+    int schema_length;
   
     if (argc < 9)
     {
@@ -113,7 +113,7 @@ int find_color(double num)
     return(ret);
 }
 
-double lyap(double a, double b,double x,unsigned short s[], , int s_length)
+double lyap(double a, double b,double x,unsigned short s[], int s_length)
 {
     int i,j;
     int iterations;
