@@ -7,14 +7,22 @@ const int MAXCOLORS = 4;
 const int MAXITERATIONS = 4000;
 
 const double INITIAL_LYAP_START = 0.5;
+/*
+originally tested values for intervals (Lyap09)
 const double EQUATION_A_PARAMETER = 2.8;
 const double EQUATION_B_PARAMETER = 3.7;
+A interval = 1.04
+B interval = 0.1485
 
-double lyap(double a, double b, double x, unsigned short s[]);
-int cerca(double num);
-void mktablog();
+For subsequent pictures
+amin=3.460;
+amax=4.000;
+bmin=2.520;
+bmax=3.650;
+*/
 
-double   tab[5000];
+double lyap(double a, double b, double x, unsigned short s[], int s_length);
+int find_color(double num);
 
 int main(int argc, char* argv[])
 {
@@ -26,10 +34,11 @@ int main(int argc, char* argv[])
     int i,j,k,c0=0;
     int c1=0;
     int rit;
+    int schema_Length;
   
-    if (argc < 6)
+    if (argc < 9)
     {
-        printf("Usage: LyapunovSpace <outFile> <resolutionX> <resolutionY>\n");
+        printf("Usage: LyapunovSpace <outFile> <schema> <Amin> <Amax> <Bmin> <Bmax> <resolutionX> <resolutionY>\n");
         printf("No checks on parameters passed.\n");
         printf("This was software used personally. Crashes were acceptable :)\n");
         ret = -1;
@@ -43,27 +52,34 @@ int main(int argc, char* argv[])
         else
         {
             // Convert numerical characters to values 
-            for (i = 0; i < strlen(argv[2]); i++)
+            schema_length = strlen(argv[2]);
+            for (i = 0; i < schema_length; i++)
             {
                 suc[i] = argv[2][i] - 48;
             }
             x = INITIAL_LYAP_START;
-            a = EQUATION_A_PARAMETER;
-            for (i = 0; i < 2080; i++)
+            int xres = atoi(argv[7]);
+            int yres = atoi(argv[8]);
+            double aMin = atof(argv[3]);
+            double aMax = atof(argv[4]);
+            double bMin = atof(argv[5]);
+            double bMax = atof(argv[6]);
+            double a_step = (aMax-aMin)/xres;
+            double b_step = (aMax-aMin)/yres;
+            for (i = 0; i < xres; i++)
             {
-                a = a + 0.0005;
-                b = EQUATION_B_PARAMETER;
-                for (j = 0; j < 1350; j++)
+                a = aMin + i * a_step;
+                for (j = 0; j < yres; j++)
                 {
-                    b = b + 0.00011;
-                    l = lyap(a, b, x, suc);
+                    b = bMin + i * b_step;
+                    l = lyap(a, b, x, suc, schema_length);
                     if (l > 0.0)
                     {
                         rit = 0;
                     }
                     else
                     {
-                        rit = cerca(l);
+                        rit = find_color(l);
                     }
                     sprintf(buf, "%d", rit);
                     fprintf(fp, "%1s", buf);
@@ -75,7 +91,7 @@ int main(int argc, char* argv[])
     }
 }
 
-int cerca(double num)
+int find_color(double num)
 {
     int ret = MAXCOLORS;
     if (num >= 0.25)
@@ -97,9 +113,8 @@ int cerca(double num)
     return(ret);
 }
 
-double lyap(double a, double b,double x,unsigned short s[])
+double lyap(double a, double b,double x,unsigned short s[], , int s_length)
 {
-    int len_suc=0;
     int i,j;
     int iterations;
     double c=log(2);
@@ -108,14 +123,10 @@ double lyap(double a, double b,double x,unsigned short s[])
     int  ind_tab;
 
     i=0;
-    while (s[i++] != 2)
-    {
-        len_suc++;
-    }
     iterations= MAXITERATIONS;
     for(i=0;i<iterations;i++)
     {
-        for(j=0;j<len_suc;j++)
+        for(j=0;j<s_length;j++)
         {
             if (s[j] == 0)
             {
