@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
             double bMax = atof(argv[6]);
             double a_step = (aMax-aMin)/xres;
             double b_step = (aMax-aMin)/yres;
-            writePPMHeader(fp, nx, ny);
+            writePPMHeader(fp, xres, yres);
             for (i = 0; i < xres; i++)
             {
                 a = aMin + i * a_step;
