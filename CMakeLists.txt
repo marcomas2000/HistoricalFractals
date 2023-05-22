@@ -8,3 +8,5 @@ project ("HistoricalFractals")
 # Include sub-projects.
 add_subdirectory ("JuliaSets")
 add_subdirectory ("MandelbrotSets")
+add_subdirectory ("LyapunovSpace")
+
