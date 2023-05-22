@@ -3,13 +3,17 @@
 #include <string.h>
 #include <math.h>
 
-#define  MAXCOLORS 4
+const int MAXCOLORS = 4;
+const int MAXITERATIONS = 4000;
+
+const double INITIAL_LYAP_START = 0.5;
+const double EQUATION_A_PARAMETER = 2.8;
+const double EQUATION_B_PARAMETER = 3.7;
 
 double lyap(double a, double b, double x, unsigned short s[]);
 int cerca(double num);
 void mktablog();
 
-long colors[MAXCOLORS];
 double   tab[5000];
 
 int main(int argc, char* argv[])
@@ -25,7 +29,7 @@ int main(int argc, char* argv[])
   
     if (argc < 6)
     {
-        printf("Usage: LyapunovSpace <outFile> <juliaParamLx> <juliaParamLy> <resolutionX> <resolutionY>\n");
+        printf("Usage: LyapunovSpace <outFile> <resolutionX> <resolutionY>\n");
         printf("No checks on parameters passed.\n");
         printf("This was software used personally. Crashes were acceptable :)\n");
         ret = -1;
@@ -38,21 +42,17 @@ int main(int argc, char* argv[])
         }
         else
         {
+            // Convert numerical characters to values 
             for (i = 0; i < strlen(argv[2]); i++)
             {
                 suc[i] = argv[2][i] - 48;
             }
-            for (i = 0; i < MAXCOLORS; i++)
-            {
-                colors[i] = 0;
-            }
-            mktablog();
-            x = 0.5;
-            a = 2.8;
+            x = INITIAL_LYAP_START;
+            a = EQUATION_A_PARAMETER;
             for (i = 0; i < 2080; i++)
             {
                 a = a + 0.0005;
-                b = 3.7;
+                b = EQUATION_B_PARAMETER;
                 for (j = 0; j < 1350; j++)
                 {
                     b = b + 0.00011;
@@ -65,16 +65,10 @@ int main(int argc, char* argv[])
                     {
                         rit = cerca(l);
                     }
-                    colors[rit]++;
                     sprintf(buf, "%d", rit);
                     fprintf(fp, "%1s", buf);
                 }
                 fflush(fp);
-                for (k = 0; k < MAXCOLORS; k++)
-                {
-                    printf("%d-%d/", k, colors[k]);
-                }
-                printf("------%d\n", i);
             }
             fclose(fp);
         }
@@ -107,11 +101,10 @@ double lyap(double a, double b,double x,unsigned short s[])
 {
     int len_suc=0;
     int i,j;
-    int ciclo;
+    int iterations;
     double c=log(2);
     double tot=0.0;
     double r,y;
-    long cont=0;
     int  ind_tab;
 
     i=0;
@@ -119,8 +112,8 @@ double lyap(double a, double b,double x,unsigned short s[])
     {
         len_suc++;
     }
-    ciclo= 4000/len_suc;
-    for(i=0;i<ciclo;i++)
+    iterations= MAXITERATIONS;
+    for(i=0;i<iterations;i++)
     {
         for(j=0;j<len_suc;j++)
         {
@@ -138,26 +131,9 @@ double lyap(double a, double b,double x,unsigned short s[])
             {
                 y = -y;
             }
-            ind_tab=y*5000.0/4.0;
-            tot=tot+(tab[ind_tab])/c;
-            /********
-                tot=tot+(log(y))/c;
-            **********/
-            cont++;
+            tot=tot+(log(y))/c;
+            iterations++;
         }
     }
-    return(tot/cont);
+    return(tot/iterations);
 }
-
-void mktablog()
-{
-    double num;
-    int i;
-
-    for(i=1;i<5000;i++)
-    {
-        num=i*4.0/5000.0;
-        tab[i-1]=log(num);
-    }
-}
-
