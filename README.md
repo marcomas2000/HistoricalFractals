@@ -7,7 +7,9 @@ I'll keep updating the collection with what I created at the time.
 ![Build status](https://github.com/marcomas2000/HistoricalFractals/actions/workflows/cmake.yml/badge.svg)
 ![Julia06](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/julia06.png)
 ![Mand06](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/mand06.png)
+![Mand06](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/lyap09.png)
 
 <p>generated/julia06.ppm created with:  JuliaSets.exe julia06.ppm -0.9 0.12 640 480</p>
 <p>generated/mand06.ppm  created with:  MandelbrotSets.exe mand06.ppm -1.26333 -1.24714 0.372908 0.390228 640 480</p>
+<p>generated/lyap09.ppm  created with:  LyapunovSpace.exe lyap09.ppm 111111000000 3.460 4.000 2.520 3.650 640 480</p>
 
