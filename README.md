@@ -9,7 +9,12 @@ I'll keep updating the collection with what I created at the time.
 ![Mand06](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/mand06.png)
 ![Mand06](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/lyap09.png)
 
-<p>generated/julia06.ppm created with:  JuliaSets.exe julia06.ppm -0.9 0.12 640 480</p>
+<p>generated/julia06.ppm created with:  JuliaSets.exe julia06.ppm -0.9 0.12 640 480 -2.0 2.0 -2.0 2.0</p>
+<p>generated/julia07.ppm created with:  JuliaSets.exe julia07.ppm 1.0 0.2 640 480 -3.0 3.0 -3.0 3.0</p>
+<p>generated/julia08.ppm created with:  JuliaSets.exe julia08.ppm 0.367 0.2 640 480 -1.9 1.9 -2.5 2.5</p>
+<p>generated/julia09.ppm created with:  JuliaSets.exe julia09.ppm 0.360284 0.100376 640 480 -1.8 1.8 -1.8 1.8</p>
+<p>generated/julia10.ppm created with:  JuliaSets.exe julia10.ppm 0.32 0.043 640 480 -2.0 2.0 -1.5 1.5</p>
+<p>generated/julia11.ppm created with:  JuliaSets.exe julia11.ppm 0.12 0.074 640 480 -1.4 1.4 -1.4 1.4</p>
 <p>generated/mand06.ppm  created with:  MandelbrotSets.exe mand06.ppm -1.26333 -1.24714 0.372908 0.390228 640 480</p>
 <p>generated/lyap09.ppm  created with:  LyapunovSpace.exe lyap09.ppm 111111000000 3.460 4.000 2.520 3.650 640 480</p>
 
