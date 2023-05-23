@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
     int ris, ret;
     FILE* fd_out = 0;
 
-    if (argc < 6)
+    if (argc < 10)
     {
-        printf("Usage: JuliaSet <outFile> <juliaParamLx> <juliaParamLy> <resolutionX> <resolutionY>\n");
+        printf("Usage: JuliaSet <outFile> <juliaParamLx> <juliaParamLy> <resolutionX> <resolutionY> <xIntervalMin> <xIntervalMax> <yIntervalMin> <yIntervalMax>\n");
         printf("No checks on parameters passed.\n");
         printf("This was software used personally. Crashes were acceptable :)\n");
         ret = -1;
@@ -36,14 +36,13 @@ int main(int argc, char *argv[])
         else
         {
             /* Set Julia Set Window */
-            ymin = -2.0;
-            ymax = 2.0;
-            xmin = -2.0;
-            xmax = 2.0;
+            ymin = atof(argv[8]);
+            ymax = atof(argv[9]);
+            xmin = atof(argv[6]);
+            xmax = atof(argv[7]);
             // Set Julia Set Parameters
             lx = atof(argv[2]);
             ly = atof(argv[3]);
-            printf("lx: %f ly: %f\n", lx, ly);
             // Set Picture resolution
             nx = atoi(argv[4]);
             ny = atoi(argv[5]);
