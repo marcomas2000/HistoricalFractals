@@ -19,5 +19,8 @@ The images are created in PPM format, conversion to PNG performed by The Gimp.
 <p>generated/julia11.ppm created with:  JuliaSets.exe julia11.ppm 0.12 0.074 640 480 -1.4 1.4 -1.4 1.4</p>
 <p>generated/mand06.ppm  created with:  MandelbrotSets.exe mand06.ppm -1.26333 -1.24714 0.372908 0.390228 640 480</p>
 <p>generated/mand09.ppm  created with:  MandelbrotSets.exe mand09.ppm -0.74591 -0.7448 0.11196 0.11339 640 480</p>
-<p>generated/lyap09.ppm  created with:  LyapunovSpace.exe lyap09.ppm 111111000000 3.460 4.000 2.520 3.650 640 480</p>
+<p>generated/lyap09.ppm  created with:  LyapunovSpace.exe lyap09.ppm 1010 3.460 4.000 2.520 3.650 640 480</p>
+<p>generated/lyap11.ppm  created with:  LyapunovSpace.exe lyap11.ppm 111111000000 3.460 4.000 2.520 3.650 640 480</p>
+<p>generated/lyap13.ppm  created with:  LyapunovSpace.exe lyap13.ppm 11000 3.460 4.000 2.520 3.650 640 480</p>
+<p>generated/lyap14.ppm  created with:  LyapunovSpace.exe lyap14.ppm 1110011000 3.460 4.000 2.520 3.650 640 480</p>
 
