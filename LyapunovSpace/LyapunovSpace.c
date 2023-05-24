@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
                     else
                     {
                         rit = find_color(l);
-                        fprintf(fp, "%c%c%c", 0x0, 0xff-rit*30, 0xff-rit*30);
+                        fprintf(fp, "%c%c%c",  0xff-rit*30, 0xff-rit*30, 0x00);
                     }
                 }
                 printf("Line: %d\n", i);

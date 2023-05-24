@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ui": "xml",
+        "LYAP09.C": "cpp",
+        "LYAP11.C": "cpp"
+    }
+}
