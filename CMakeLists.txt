@@ -9,4 +9,5 @@ project ("HistoricalFractals")
 add_subdirectory ("JuliaSets")
 add_subdirectory ("MandelbrotSets")
 add_subdirectory ("LyapunovSpace")
+add_subdirectory ("SectSets")
 
