@@ -9,7 +9,8 @@ The images are created in PPM format, conversion to PNG performed by The Gimp.
 
 ![Julia06](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/julia06.png)
 ![Mand06](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/mand06.png)
-![Mand06](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/lyap09.png)
+![Lyap09](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/lyap09.png)
+![Sect07](https://github.com/marcomas2000/HistoricalFractals/blob/master/generated/sect07.png)
 
 <p>generated/julia06.ppm created with:  JuliaSets.exe julia06.ppm -0.9 0.12 640 480 -2.0 2.0 -2.0 2.0</p>
 <p>generated/julia07.ppm created with:  JuliaSets.exe julia07.ppm 1.0 0.2 640 480 -3.0 3.0 -3.0 3.0</p>
@@ -23,4 +24,5 @@ The images are created in PPM format, conversion to PNG performed by The Gimp.
 <p>generated/lyap11.ppm  created with:  LyapunovSpace.exe lyap11.ppm 111111000000 3.460 4.000 2.520 3.650 640 480</p>
 <p>generated/lyap13.ppm  created with:  LyapunovSpace.exe lyap13.ppm 11000 3.460 4.000 2.520 3.650 640 480</p>
 <p>generated/lyap14.ppm  created with:  LyapunovSpace.exe lyap14.ppm 1110011000 3.460 4.000 2.520 3.650 640 480</p>
+<p>generated/sect07.ppm  created with:  SectSets.exe sect07.ppm 640 480 -1.55 -1.55</p>
 
